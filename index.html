@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Morse Translator</title>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td>Normal Text</td>
+          <td>:</td>
+          <td>
+            <textarea name="normal-text" id="normal-text" cols="30" rows="10" oninput="translateTextToMorseCode()"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <hr />
+          </td>
+        </tr>
+        <tr>
+          <td>Morse Code</td>
+          <td>:</td>
+          <td>
+            <textarea name="morse-code" id="morse-code" cols="30" rows="10" oninput="translateMorseCodeToText()"></textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const textToMorseCodeList = {
+        0: "-----",
+        1: ".----",
+        2: "..---",
+        3: "...--",
+        4: "....-",
+        5: ".....",
+        6: "-....",
+        7: "--...",
+        8: "---..",
+        9: "----.",
+        a: ".-",
+        b: "-...",
+        c: "-.-.",
+        d: "-..",
+        e: ".",
+        f: "..-.",
+        g: "--.",
+        h: "....",
+        i: "..",
+        j: ".---",
+        k: "-.-",
+        l: ".-..",
+        m: "--",
+        n: "-.",
+        o: "---",
+        p: ".--.",
+        q: "--.-",
+        r: ".-.",
+        s: "...",
+        t: "-",
+        u: "..-",
+        v: "...-",
+        w: ".--",
+        x: "-..-",
+        y: "-.--",
+        z: "--..",
+        ".": ".-.-.-",
+        ",": "--..--",
+        "?": "..--..",
+        "!": "-.-.--",
+        "-": "-....-",
+        "/": "-..-.",
+        "@": ".--.-.",
+        "(": "-.--.",
+        ")": "-.--.-",
+      };
+      const morseCodeToTextList = {
+        "-----": "0",
+        ".----": "1",
+        "..---": "2",
+        "...--": "3",
+        "....-": "4",
+        ".....": "5",
+        "-....": "6",
+        "--...": "7",
+        "---..": "8",
+        "----.": "9",
+        ".-": "a",
+        "-...": "b",
+        "-.-.": "c",
+        "-..": "d",
+        ".": "e",
+        "..-.": "f",
+        "--.": "g",
+        "....": "h",
+        "..": "i",
+        ".---": "j",
+        "-.-": "k",
+        ".-..": "l",
+        "--": "m",
+        "-.": "n",
+        "---": "o",
+        ".--.": "p",
+        "--.-": "q",
+        ".-.": "r",
+        "...": "s",
+        "-": "t",
+        "..-": "u",
+        "...-": "v",
+        ".--": "w",
+        "-..-": "x",
+        "-.--": "y",
+        "--..": "z",
+        ".-.-.-": ".",
+        "--..--": ",",
+        "..--..": "?",
+        "-.-.--": "!",
+        "-....-": "-",
+        "-..-.": "/",
+        ".--.-.": "@",
+        "-.--.": "(",
+        "-.--.-": ")",
+      };
+      var normalText = document.getElementById("normal-text");
+      var morseCode = document.getElementById("morse-code");
+
+      function translateTextToMorseCode() {
+        var normalTextString = normalText.value.trim().toLowerCase();
+        var morseCodeString = "";
+
+        for (let i = 0; i < normalTextString.length; i++) {
+          var normalTextCharacter = textToMorseCodeList[normalTextString[i]];
+
+          if (normalTextCharacter === undefined && normalTextString[i] !== " ") {
+            alert("Sorry, We can't understand you.");
+            break;
+          } else {
+            morseCodeString += normalTextString[i] === " " ? "/ " : normalTextCharacter + " ";
+          }
+        }
+        morseCode.value = morseCodeString;
+      }
+
+      function translateMorseCodeToText() {
+        var morseCodeArray = morseCode.value.trim().split(" ");
+        var normalTextString = "";
+
+        morseCodeArray.forEach(function (morseCodeString) {
+          var morseCodeCharacter = morseCodeToTextList[morseCodeString];
+
+          if (morseCodeCharacter === undefined && morseCodeString !== " ") {
+            alert("Sorry, We can't understand you.");
+          } else {
+            normalTextString += morseCodeCharacter + "";
+          }
+        });
+        normalText.value = normalTextString;
+      }
+    </script>
+  </body>
+</html>
