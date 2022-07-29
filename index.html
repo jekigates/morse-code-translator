@@ -15,6 +15,9 @@
           <td>
             <textarea name="normal-text" id="normal-text" cols="30" rows="10" oninput="translateTextToMorseCode()"></textarea>
           </td>
+          <td>
+            <button onclick="copyNormalText()">Copy Normal Text</button>
+          </td>
         </tr>
         <tr>
           <td colspan="3">
@@ -26,6 +29,9 @@
           <td>:</td>
           <td>
             <textarea name="morse-code" id="morse-code" cols="30" rows="10" oninput="translateMorseCodeToText()"></textarea>
+          </td>
+          <td>
+            <button onclick="copyMorseCode()">Copy Morse Code</button>
           </td>
         </tr>
       </tbody>
@@ -150,16 +156,42 @@
         var morseCodeArray = morseCode.value.trim().split(" ");
         var normalTextString = "";
 
-        morseCodeArray.forEach(function (morseCodeString) {
-          var morseCodeCharacter = morseCodeToTextList[morseCodeString];
+        if (morseCode.value.trim() !== "") {
+          morseCodeArray.forEach(function (morseCodeString) {
+            var morseCodeCharacter = morseCodeToTextList[morseCodeString];
 
-          if (morseCodeCharacter === undefined && morseCodeString !== " ") {
-            alert("Sorry, We can't understand you.");
-          } else {
-            normalTextString += morseCodeCharacter + "";
-          }
-        });
+            if (morseCodeCharacter === undefined) {
+              alert("Sorry, We can't understand you.");
+            } else {
+              normalTextString += morseCodeCharacter + "";
+            }
+          });
+        }
         normalText.value = normalTextString;
+      }
+
+      function copyNormalText() {
+        /* Select the text field */
+        normalText.select();
+        normalText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(normalText.value);
+
+        /* Alert the copied text */
+        alert("Copied the normal text");
+      }
+
+      function copyMorseCode() {
+        /* Select the text field */
+        morseCode.select();
+        morseCode.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(morseCode.value);
+
+        /* Alert the copied text */
+        alert("Copied the morse code");
       }
     </script>
   </body>
