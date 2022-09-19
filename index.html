@@ -4,38 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Morse Translator</title>
+    <title>Morse Code Translator</title>
+    <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css" />
+    <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      h4 {
+        margin-bottom: 0;
+        font-weight: bold;
+      }
+
+      textarea {
+        width: 100%;
+        height: 8rem;
+        padding: 0 0.5rem;
+        font-size: 1.5rem;
+      }
+    </style>
   </head>
   <body>
-    <table>
-      <tbody>
-        <tr>
-          <td>Normal Text</td>
-          <td>:</td>
-          <td>
-            <textarea name="normal-text" id="normal-text" cols="30" rows="10" oninput="translateTextToMorseCode()"></textarea>
-          </td>
-          <td>
-            <button onclick="copyNormalText()">Copy Normal Text</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="3">
-            <hr />
-          </td>
-        </tr>
-        <tr>
-          <td>Morse Code</td>
-          <td>:</td>
-          <td>
-            <textarea name="morse-code" id="morse-code" cols="30" rows="10" oninput="translateMorseCodeToText()"></textarea>
-          </td>
-          <td>
-            <button onclick="copyMorseCode()">Copy Morse Code</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="container-fluid mb-4">
+      <div class="row p-4 bg-primary text-white text-center">
+        <div class="col-12">
+          <h2>Morse Code Translator</h2>
+          <p>Made with <span>&hearts;</span> by Jeki Gates</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-5">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h4>Normal Text</h4>
+            <button class="btn btn-primary" onclick="copyNormalText()">Copy</button>
+          </div>
+          <textarea id="normal-text" name="normal-text" oninput="translateTextToMorseCode()"></textarea>
+        </div>
+        <div class="col-2 d-flex align-items-center justify-content-center">
+          <h2><=></h2>
+        </div>
+        <div class="col-5">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h4>Morse Code</h4>
+            <button class="btn btn-primary" onclick="copyMorseCode()">Copy</button>
+          </div>
+          <textarea id="morse-code" name="morse-code" oninput="translateMorseCodeToText()"></textarea>
+        </div>
+      </div>
+    </div>
 
     <script>
       const textToMorseCodeList = {
