@@ -173,7 +173,7 @@
             morseCodeString += normalTextString[i] === " " ? "/ " : normalTextCharacter + " ";
           }
         }
-        morseCode.value = morseCodeString;
+        morseCode.value = morseCodeString.trimEnd();
       }
 
       function translateMorseCodeToText() {
