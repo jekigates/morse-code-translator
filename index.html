@@ -158,7 +158,7 @@
 
         if (morseCode.value.trim() !== "") {
           morseCodeArray.forEach(function (morseCodeString) {
-            var morseCodeCharacter = morseCodeToTextList[morseCodeString];
+            var morseCodeCharacter = morseCodeString === "/" ? " " : morseCodeToTextList[morseCodeString];
 
             if (morseCodeCharacter === undefined) {
               alert("Sorry, We can't understand you.");
